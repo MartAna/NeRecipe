@@ -20,14 +20,18 @@ class RecipeEntity(
     val author: String,
     @ColumnInfo(name = "category")
     @NonNull
-    val category: String
+    val category: String,
+    @ColumnInfo(name = "liked_by_me")
+    val likedByMe: Boolean = false
 )
 
-@Entity(tableName = "steps", foreignKeys = [ForeignKey(entity = RecipeEntity::class,
-    parentColumns = arrayOf("id"),
-    childColumns = arrayOf("recipeId"),
-    onDelete = CASCADE
-)]
+@Entity(
+    tableName = "steps", foreignKeys = [ForeignKey(
+        entity = RecipeEntity::class,
+        parentColumns = arrayOf("id"),
+        childColumns = arrayOf("recipeId"),
+        onDelete = CASCADE
+    )]
 )
 class StepEntity(
     @PrimaryKey(autoGenerate = true)
@@ -36,9 +40,13 @@ class StepEntity(
     @ColumnInfo(name = "recipeId")
     @NonNull
     val recipeId: Long,
+    @ColumnInfo(name = "stepNumber")
+    @NonNull
+    val stepNumber: Long,
     @ColumnInfo(name = "image")
     val image: String? = null,
     @ColumnInfo(name = "description")
     @NonNull
     val description: String
 )
+
