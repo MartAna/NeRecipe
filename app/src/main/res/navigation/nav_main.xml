@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_main">
+    android:id="@+id/nav_main"
+    app:startDestination="@id/recipesFragment">
 
+    <fragment
+        android:id="@+id/recipesFragment"
+        android:name="ru.netology.nerecipe.ui.RecipesFragment"
+        android:label="RecipesFragment" >
+        <action
+            android:id="@+id/action_recipesFragment_to_loveRecipeFragment"
+            app:destination="@id/loveRecipeFragment" />
+        <action
+            android:id="@+id/action_recipesFragment_to_recipeFragment"
+            app:destination="@id/recipeFragment" />
+        <action
+            android:id="@+id/action_recipesFragment_to_newRecipeFragment"
+            app:destination="@id/newRecipeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loveRecipeFragment"
+        android:name="ru.netology.nerecipe.ui.LoveRecipeFragment"
+        android:label="LoveRecipeFragment" >
+        <action
+            android:id="@+id/action_loveRecipeFragment_to_recipeFragment"
+            app:destination="@id/recipeFragment" />
+        <action
+            android:id="@+id/action_loveRecipeFragment_to_newRecipeFragment"
+            app:destination="@id/newRecipeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipeFragment"
+        android:name="ru.netology.nerecipe.ui.RecipeFragment"
+        android:label="RecipeFragment" >
+        <action
+            android:id="@+id/action_recipeFragment_to_editRecipeFragment"
+            app:destination="@id/editRecipeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editRecipeFragment"
+        android:name="ru.netology.nerecipe.ui.EditRecipeFragment"
+        android:label="EditRecipeFragment" />
+    <fragment
+        android:id="@+id/newRecipeFragment"
+        android:name="ru.netology.nerecipe.ui.NewRecipeFragment"
+        android:label="NewRecipeFragment" />
 </navigation>
