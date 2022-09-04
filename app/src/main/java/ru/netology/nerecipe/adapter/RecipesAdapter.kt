@@ -13,7 +13,7 @@ import ru.netology.nerecipe.dto.Recipe
 import ru.netology.nerecipe.viewModel.RecipeViewModel
 
 class RecipesAdapter(
-    private val interactionListener: RecipeViewModel
+    private val interactionListener: RecipeInteractionListener
 ) : ListAdapter<Recipe, RecipesAdapter.RecipeViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
@@ -21,7 +21,7 @@ class RecipesAdapter(
         val binding = RecipeItemBinding.inflate(
             inflater, parent, false
         )
-        return RecipeViewHolder (binding, interactionListener)
+        return RecipeViewHolder(binding, interactionListener)
     }
 
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
@@ -59,6 +59,9 @@ class RecipesAdapter(
             binding.recipeItemContainer.setOnClickListener {
                 listener.onRecipeClicked(recipe)
             }
+            binding.loveRecipe.setOnClickListener {
+                listener.onLikeClicked(recipe)
+            }
         }
 
         fun bind(recipe: Recipe) {
@@ -68,6 +71,7 @@ class RecipesAdapter(
                 textAuthor.text = recipe.author
                 textCategory.text = recipe.category
                 menuMore.setOnClickListener { popupMenu.show() }
+                loveRecipe.isChecked = recipe.likedByMe
             }
         }
     }

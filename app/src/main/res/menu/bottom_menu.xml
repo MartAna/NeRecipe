@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/recipe"
-        android:title="@string/recipe" />
+        android:id="@+id/recipeMenu"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_list_24"
+        android:title="@string/recipe"
+
+        />
     <item
-        android:id="@+id/loveRecipe"
+        android:id="@+id/loveRecipeMenu"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_favorite_border_24"
         android:title="@string/love_recipe" />
 </menu>

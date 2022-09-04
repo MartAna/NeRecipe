@@ -7,12 +7,23 @@
     android:layout_height="match_parent"
     android:padding="24dp">
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/loveRecipe"
+        style="@style/Widget.AppTheme.LikeCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checkable="true"
+        android:contentDescription="@string/love_recipe"
+        app:layout_constraintBottom_toBottomOf="@+id/textCategory"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textTitle" />
+
     <TextView
         android:id="@+id/textTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:singleLine="false"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/loveRecipe"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Title" />
 
@@ -21,7 +32,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:singleLine="true"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/loveRecipe"
         app:layout_constraintTop_toBottomOf="@id/textTitle"
         tools:text="Author" />
 
@@ -30,7 +41,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:singleLine="true"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/loveRecipe"
         app:layout_constraintTop_toBottomOf="@id/textAuthor"
         tools:text="Category" />
 

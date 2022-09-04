@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import ru.netology.nerecipe.R
 import ru.netology.nerecipe.adapter.RecipesAdapter
 import ru.netology.nerecipe.databinding.RecipesFragmentBinding
 import ru.netology.nerecipe.viewModel.RecipeViewModel
 
-class RecipesFragment: Fragment() {
+class RecipesFragment : Fragment() {
 
     private val viewModel: RecipeViewModel by viewModels(
         ownerProducer = ::requireParentFragment
@@ -21,9 +23,17 @@ class RecipesFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = RecipesFragmentBinding.inflate(layoutInflater,container,false)
+        val binding = RecipesFragmentBinding.inflate(layoutInflater, container, false)
         val adapter = RecipesAdapter(viewModel)
+        binding.recipesRecyclerView.adapter = adapter
+        createNewRecipe(binding)
 
         return binding.root
     }
+    private fun createNewRecipe(binding: RecipesFragmentBinding) {
+        binding.fab.setOnClickListener {
+            findNavController().navigate(R.id.action_recipesFragment_to_newRecipeFragment)
+        }
+    }
+
 }

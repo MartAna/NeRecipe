@@ -1,8 +1,5 @@
 package ru.netology.nerecipe.dto
 
-import androidx.room.Embedded
-import androidx.room.Relation
-
 class Recipe(
     val id: Long,
     val title: String,
@@ -17,11 +14,4 @@ class Step(
     val stepNumber: Long,
     val image: String?,
     val description: String
-)
-
-class RecipeWithStep(
-    @Embedded
-    val recipe: Recipe,
-    @Relation(parentColumn = "id", entityColumn = "recipeId")
-    val steps: List<Step>
 )
