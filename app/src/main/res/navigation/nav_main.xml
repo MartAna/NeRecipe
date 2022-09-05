@@ -49,10 +49,10 @@
         android:label="love_recipe_fragment"
         tools:layout="@layout/love_recipe_fragment" >
         <action
-            android:id="@+id/action_loveRecipeFragment2_to_recipeFragment"
+            android:id="@+id/action_loveRecipeFragment_to_recipeFragment"
             app:destination="@id/recipeFragment" />
         <action
-            android:id="@+id/action_loveRecipeFragment2_to_editRecipeFragment"
+            android:id="@+id/action_loveRecipeFragment_to_editRecipeFragment"
             app:destination="@id/editRecipeFragment" />
     </fragment>
 </navigation>

@@ -10,11 +10,13 @@ import androidx.navigation.fragment.findNavController
 import ru.netology.nerecipe.R
 import ru.netology.nerecipe.adapter.RecipesAdapter
 import ru.netology.nerecipe.databinding.RecipesFragmentBinding
+import ru.netology.nerecipe.ui.RecipeFragment.Companion.longArg
 import ru.netology.nerecipe.viewModel.RecipeViewModel
+import kotlin.collections.emptyList as emptyList1
 
 class RecipesFragment : Fragment() {
 
-   private val viewModel: RecipeViewModel by viewModels(
+    private val viewModel: RecipeViewModel by viewModels(
         ownerProducer = ::requireParentFragment
     )
 
@@ -26,14 +28,49 @@ class RecipesFragment : Fragment() {
         val binding = RecipesFragmentBinding.inflate(layoutInflater, container, false)
         val adapter = RecipesAdapter(viewModel)
         binding.recipesRecyclerView.adapter = adapter
+
+        viewModel.dataRecipe.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
         createNewRecipe(binding)
+        openPost()
+
+        viewModel.currentRecipe.observe(viewLifecycleOwner) { currentRecipe ->
+            val content = currentRecipe?.steps
+            if (content != null) {
+                if (content.isNotEmpty()) {
+                    findNavController().navigate(
+                        R.id.action_recipesFragment_to_editRecipeFragment,
+                        Bundle().apply {
+                            longArg = currentRecipe.id
+                        }
+                    )
+                }
+            }
+        }
 
         return binding.root
     }
+
     private fun createNewRecipe(binding: RecipesFragmentBinding) {
         binding.fab.setOnClickListener {
             findNavController().navigate(R.id.action_recipesFragment_to_newRecipeFragment)
         }
     }
+
+    private fun openPost() {
+        viewModel.navigateToRecipe.observe(viewLifecycleOwner) {
+            if (it != null) {
+                findNavController().navigate(
+                    R.id.action_recipesFragment_to_recipeFragment,
+                    Bundle().apply {
+                        longArg = it
+                    }
+                )
+            }
+        }
+    }
+
+
 
 }
