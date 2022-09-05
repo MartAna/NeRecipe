@@ -2,9 +2,14 @@
 <resources>
     <string name="app_name">Рецепты</string>
     <string name="remove">Удалить</string>
-    <string name="edit">Измениить</string>
+    <string name="edit">Изменить</string>
     <string name="add_post">Добавить</string>
     <string name="recipe">Рецепт</string>
     <string name="love_recipe">Избранное</string>
     <string name="step_description">Описание шага</string>
+    <string name="title">Название</string>
+    <string name="author">Автор</string>
+    <string name="category">Категория</string>
+    <string name="step">Описание шага</string>
+    <string name="save">Сохранить</string>
 </resources>

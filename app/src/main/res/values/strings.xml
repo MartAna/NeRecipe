@@ -6,4 +6,9 @@
     <string name="recipe">Recipe</string>
     <string name="love_recipe">Love recipe</string>
     <string name="step_description">Step description</string>
+    <string name="title">Title</string>
+    <string name="author">Author</string>
+    <string name="category">Category</string>
+    <string name="step">Step</string>
+    <string name="save">Save</string>
 </resources>

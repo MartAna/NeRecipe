@@ -62,7 +62,8 @@ class RecipeRepositoryImpl() : RecipeRepository {
         TODO("Not yet implemented")
     }
 
-    override fun delete() {
-        TODO("Not yet implemented")
+    override fun delete(id: Long) {
+        recipes = recipes.filter { it.id != id }
+        dataRecipe.value = recipes
     }
 }
