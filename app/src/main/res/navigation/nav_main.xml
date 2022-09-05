@@ -20,8 +20,9 @@
             android:id="@+id/action_recipesFragment_to_editRecipeFragment"
             app:destination="@id/editRecipeFragment" />
         <action
-            android:id="@+id/action_recipesFragment_to_loveRecipeFragment2"
+            android:id="@+id/action_recipesFragment_to_loveRecipeFragment"
             app:destination="@id/loveRecipeFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/recipeFragment"

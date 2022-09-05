@@ -14,7 +14,7 @@ import ru.netology.nerecipe.viewModel.RecipeViewModel
 
 class RecipesFragment : Fragment() {
 
-    private val viewModel: RecipeViewModel by viewModels(
+   private val viewModel: RecipeViewModel by viewModels(
         ownerProducer = ::requireParentFragment
     )
 

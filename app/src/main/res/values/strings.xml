@@ -5,4 +5,5 @@
     <string name="add_post">Add</string>
     <string name="recipe">Recipe</string>
     <string name="love_recipe">Love recipe</string>
+    <string name="step_description">Step description</string>
 </resources>

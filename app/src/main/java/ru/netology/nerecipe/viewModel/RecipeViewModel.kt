@@ -14,7 +14,9 @@ class RecipeViewModel(
 
     private val repository: RecipeRepository = RecipeRepositoryImpl()
 
-    val data get() = repository.data
+    val dataRecipe get() = repository.dataRecipe
+    val dataStep get() = repository.dataStep
+    fun like(id: Long) = repository.like(id)
     override fun onDeleteClicked(recipe: Recipe) {
         TODO("Not yet implemented")
     }
@@ -30,5 +32,6 @@ class RecipeViewModel(
     override fun onLikeClicked(recipe: Recipe) {
         TODO("Not yet implemented")
     }
+
 
 }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Рецепты</string>
+    <string name="remove">Удалить</string>
+    <string name="edit">Измениить</string>
+    <string name="add_post">Добавить</string>
+    <string name="recipe">Рецепт</string>
+    <string name="love_recipe">Избранное</string>
+    <string name="step_description">Описание шага</string>
+</resources>

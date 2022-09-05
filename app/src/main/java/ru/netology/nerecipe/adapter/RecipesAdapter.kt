@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nerecipe.R
 import ru.netology.nerecipe.databinding.RecipeItemBinding
 import ru.netology.nerecipe.dto.Recipe
-import ru.netology.nerecipe.viewModel.RecipeViewModel
 
 class RecipesAdapter(
     private val interactionListener: RecipeInteractionListener
