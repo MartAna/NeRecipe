@@ -7,6 +7,7 @@ import ru.netology.nerecipe.adapter.RecipeInteractionListener
 import ru.netology.nerecipe.data.RecipeRepository
 import ru.netology.nerecipe.data.impl.RecipeRepositoryImpl
 import ru.netology.nerecipe.dto.Recipe
+import ru.netology.nerecipe.dto.Step
 import ru.netology.nerecipe.util.SingleLiveEvent
 
 class RecipeViewModel(
@@ -38,6 +39,10 @@ class RecipeViewModel(
     }
 
     override fun onLikeClicked(recipe: Recipe) {
+        repository.like(recipe.id)
+    }
+
+    override fun onCancelClicked(step: Step) {
         TODO("Not yet implemented")
     }
 

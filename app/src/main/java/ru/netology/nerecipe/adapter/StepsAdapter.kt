@@ -11,7 +11,7 @@ import ru.netology.nerecipe.dto.Step
 
 class StepsAdapter(
     private val interactionListener: RecipeInteractionListener
-    ) : ListAdapter<Step, StepsAdapter.StepViewHolder>(DiffCallback) {
+    ) : ListAdapter<Step, StepsAdapter.StepViewHolder>(DiffCallbackStep) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StepViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -41,7 +41,7 @@ class StepsAdapter(
     }
 }
 
-private object DiffCallback : DiffUtil.ItemCallback<Step>() {
+private object DiffCallbackStep : DiffUtil.ItemCallback<Step>() {
 
     override fun areItemsTheSame(oldItem: Step, newItem: Step) =
         oldItem.stepId == newItem.stepId

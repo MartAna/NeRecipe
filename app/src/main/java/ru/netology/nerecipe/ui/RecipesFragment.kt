@@ -40,7 +40,7 @@ class RecipesFragment : Fragment() {
             if (content != null) {
                 if (content.isNotEmpty()) {
                     findNavController().navigate(
-                        R.id.action_recipesFragment_to_editRecipeFragment,
+                        R.id.action_recipesFragment_to_newRecipeFragment,
                         Bundle().apply {
                             longArg = currentRecipe.id
                         }

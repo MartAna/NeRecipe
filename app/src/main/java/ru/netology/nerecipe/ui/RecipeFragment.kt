@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import ru.netology.nerecipe.R
 import ru.netology.nerecipe.adapter.RecipesAdapter
 import ru.netology.nerecipe.adapter.StepsAdapter
 import ru.netology.nerecipe.databinding.RecipeFragmentBinding
@@ -54,6 +55,20 @@ class RecipeFragment : Fragment() {
         binding.stepsRecyclerView.adapter = adapterStep
         viewModel.dataStep.observe(viewLifecycleOwner) { steps ->
             adapterStep.submitList(steps.filter { it.recipeId == id })
+        }
+
+        viewModel.currentRecipe.observe(viewLifecycleOwner) { currentRecipe ->
+            val content = currentRecipe?.steps
+            if (content != null) {
+                if (content.isNotEmpty()) {
+                    findNavController().navigate(
+                        R.id.action_recipeFragment_to_newRecipeFragment,
+                        Bundle().apply {
+                            longArg = currentRecipe.id
+                        }
+                    )
+                }
+            }
         }
 
         return binding.root
