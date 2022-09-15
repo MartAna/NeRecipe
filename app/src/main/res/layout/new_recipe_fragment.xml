@@ -33,19 +33,27 @@
         app:layout_constraintTop_toBottomOf="@id/editAuthor" />
 
     <Spinner
-        android:id="@+id/spinnerCategory"
+        android:id="@+id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:entries="@array/Category"
         android:hint="@string/category"
         android:singleLine="true"
         app:layout_constraintTop_toBottomOf="@id/textCategory" />
+
+    <include
+        android:id="@+id/stepLayout"
+        layout="@layout/step_edit_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/spinner"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerEditStep"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/spinnerCategory"
+        app:layout_constraintTop_toBottomOf="@id/stepLayout"
         tools:listitem="@layout/step_edit_item" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -62,7 +70,7 @@
         android:id="@+id/save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text = "@string/save"
+        android:text="@string/save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

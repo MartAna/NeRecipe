@@ -27,7 +27,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/stepText"
+        android:id="@+id/stepEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -35,6 +35,14 @@
         android:singleLine="false"
         app:layout_constraintStart_toEndOf="@id/imageStep"
         app:layout_constraintTop_toBottomOf="@id/stepTitle" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/groupButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checkable="true"
+        android:visibility="gone"
+        app:constraint_referenced_ids="cancel,deleteStep,saveStep" />
 
     <ImageButton
         android:id="@+id/cancel"
@@ -44,5 +52,24 @@
         android:src="@drawable/ic_baseline_cancel_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/deleteStep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete"
+        app:layout_constraintEnd_toStartOf="@+id/saveStep"
+        app:layout_constraintTop_toBottomOf="@id/stepEditText"
+        android:layout_marginEnd="24dp"
+        />
+
+    <Button
+        android:id="@+id/saveStep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/stepEditText"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

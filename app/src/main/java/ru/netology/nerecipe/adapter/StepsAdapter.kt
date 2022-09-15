@@ -38,6 +38,12 @@ class StepsAdapter(
                 stepText.text = step.description
             }
         }
+
+        init {
+            binding.stepItemContainer.setOnClickListener {
+                listener.onStepClicked(step)
+            }
+        }
     }
 }
 

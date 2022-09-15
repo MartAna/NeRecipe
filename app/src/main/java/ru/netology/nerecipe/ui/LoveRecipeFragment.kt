@@ -34,7 +34,7 @@ class LoveRecipeFragment : Fragment() {
         }
 
         viewModel.currentRecipe.observe(viewLifecycleOwner) { currentRecipe ->
-            val content = currentRecipe?.steps
+            val content = currentRecipe?.title
             if (content != null) {
                 if (content.isNotEmpty()) {
                     findNavController().navigate(

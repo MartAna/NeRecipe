@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:checkable="true"
         android:contentDescription="@string/love_recipe"
-        app:layout_constraintBottom_toBottomOf="@+id/textCategory"
+        app:layout_constraintBottom_toBottomOf="@+id/spinnerCategory"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textTitle" />
 
@@ -36,20 +36,22 @@
         app:layout_constraintTop_toBottomOf="@id/textTitle"
         tools:text="Author" />
 
-    <TextView
-        android:id="@+id/textCategory"
-        android:layout_width="0dp"
+    <Spinner
+        android:id="@+id/spinnerCategory"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:hint="@string/category"
         android:singleLine="true"
-        app:layout_constraintStart_toEndOf="@id/loveRecipe"
+        android:entries="@array/Category"
         app:layout_constraintTop_toBottomOf="@id/textAuthor"
-        tools:text="Category" />
+        app:layout_constraintStart_toEndOf="@id/loveRecipe"
+        />
 
     <Button
         android:id="@+id/menuMore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/textCategory"
+        app:layout_constraintBottom_toBottomOf="@+id/spinnerCategory"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textTitle"
         style="@style/Widget.AppTheme.More"/>

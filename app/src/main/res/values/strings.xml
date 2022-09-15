@@ -11,4 +11,6 @@
     <string name="category">Category</string>
     <string name="step">Step</string>
     <string name="save">Save</string>
+    <string name="saveStep">save</string>
+    <string name="cancel">cancel</string>
 </resources>

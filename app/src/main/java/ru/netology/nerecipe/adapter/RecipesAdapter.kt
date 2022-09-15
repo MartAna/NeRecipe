@@ -68,7 +68,8 @@ class RecipesAdapter(
             with(binding) {
                 textTitle.text = recipe.title
                 textAuthor.text = recipe.author
-                textCategory.text = recipe.category
+                spinnerCategory.setSelection(recipe.category)
+                spinnerCategory.isEnabled = false
                 menuMore.setOnClickListener { popupMenu.show() }
                 loveRecipe.isChecked = recipe.likedByMe
             }

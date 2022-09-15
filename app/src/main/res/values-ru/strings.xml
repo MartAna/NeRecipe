@@ -12,4 +12,6 @@
     <string name="category">Категория</string>
     <string name="step">Описание шага</string>
     <string name="save">Сохранить</string>
+    <string name="saveStep">Сохранить шаг</string>
+    <string name="cancel">Отмена</string>
 </resources>
