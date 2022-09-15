@@ -23,8 +23,13 @@ class RecipeRepositoryImpl(
         else dao.updateRecipeById(recipe.id, recipe.title, recipe.author, recipe.category)
     }
 
-    override fun delete(id: Long) {
-        dao.removeById(id)
+    override fun deleteRecipe(id: Long) {
+        dao.removeRecipeById(id)
+        dao.removeStepByIdRecipe(id)
+    }
+
+    override fun deleteStep(id: Long) {
+        dao.removeStepById(id)
     }
 
     override fun saveStep(step: Step) {

@@ -15,7 +15,7 @@ interface RecipeDao {
     fun getAllSteps(): LiveData<List<StepEntity>>
 
     @Insert
-    fun insert(recipe: RecipeEntity): Long
+    fun insert(recipe: RecipeEntity)
 
     @Insert
     fun insert(step: StepEntity)
@@ -27,7 +27,7 @@ interface RecipeDao {
     fun updateStepById(id: Long, image: String?, description: String)
 
     @Query("DELETE FROM recipes WHERE id = :id")
-    fun removeById(id: Long)
+    fun removeRecipeById(id: Long)
 
     @Query(
         """
@@ -40,4 +40,10 @@ interface RecipeDao {
 
     @Query("SELECT MAX(id) FROM recipes")
     fun lastId(): Long
+
+    @Query("DELETE FROM steps WHERE recipeId = :id")
+    fun removeStepByIdRecipe(id: Long)
+
+    @Query("DELETE FROM steps WHERE stepId = :id")
+    fun removeStepById(id: Long)
 }

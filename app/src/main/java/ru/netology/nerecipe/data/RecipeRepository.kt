@@ -9,7 +9,8 @@ interface RecipeRepository {
     val dataStep: LiveData<List<Step>>
     fun like(id: Long)
     fun saveRecipe(recipe: Recipe)
-    fun delete(id: Long)
+    fun deleteRecipe(id: Long)
+    fun deleteStep(id: Long)
     fun saveStep(steps: Step)
     fun lastId():Long
 

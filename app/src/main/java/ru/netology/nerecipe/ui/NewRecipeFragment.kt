@@ -21,8 +21,8 @@ class NewRecipeFragment : Fragment() {
         ownerProducer = ::requireParentFragment
     )
 
-    private var steps = emptyList<Step>()
-    private lateinit var step: Step
+    private var steps = mutableListOf<Step>()
+    lateinit var step: Step
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,8 +32,6 @@ class NewRecipeFragment : Fragment() {
         val binding = NewRecipeFragmentBinding.inflate(layoutInflater, container, false)
         val adapter = StepsAdapter(viewModel)
         binding.recyclerEditStep.adapter = adapter
-
-        editRecipe(binding, adapter)
 
         val spinner = binding.spinner
         context?.let {
@@ -52,8 +50,12 @@ class NewRecipeFragment : Fragment() {
         binding.fabAddStep.setOnClickListener {
             newStep(adapter, binding)
             binding.stepLayout.stepEditText.text.clear()
-
         }
+
+        editRecipe(binding, adapter)
+       /* cancelEditStep(binding)
+        saveEditStep(binding)
+        deleteStep(binding)*/
 
         binding.save.setOnClickListener {
             save(binding)
@@ -61,8 +63,6 @@ class NewRecipeFragment : Fragment() {
         }
 
         return binding.root
-
-
     }
 
     private fun newStep(adapter: StepsAdapter, binding: NewRecipeFragmentBinding) {
@@ -72,7 +72,7 @@ class NewRecipeFragment : Fragment() {
             stepNumber = number + 1L,
             description = binding.stepLayout.stepEditText.text.toString()
         )
-        steps = steps + oneStep
+        steps = (steps + oneStep) as MutableList<Step>
         adapter.submitList(steps)
     }
 
@@ -96,23 +96,52 @@ class NewRecipeFragment : Fragment() {
                     editTitle.setText(currentRecipe.title)
                     editAuthor.setText(currentRecipe.author)
                     spinner.setSelection(currentRecipe.category)
-                    viewModel.dataStep.observe(viewLifecycleOwner) { steps ->
-                        adapter.submitList(steps.filter { it.recipeId == currentRecipe.id })
+                    viewModel.dataStep.observe(viewLifecycleOwner) { step ->
+                        steps = step.filter { it.recipeId == currentRecipe.id } as MutableList<Step>
+                        adapter.submitList(steps)
                     }
                 }
             }
         }
 
-        viewModel.currentStep.observe(viewLifecycleOwner){ currentStep ->
-            val step = currentStep?.description
-            if (step != null) {
-                with(binding){
+        viewModel.currentStep.observe(viewLifecycleOwner) { currentStep ->
+            val s = currentStep?.description
+            if (s != null) {
+                with(binding) {
                     stepLayout.stepEditText.setText(currentStep.description)
                     stepLayout.groupButton.visibility = View.VISIBLE
                 }
+                binding.stepLayout.cancel.setOnClickListener {
+                    viewModel.onCancelClicked(step)
+                }
 
+                binding.stepLayout.saveStep.setOnClickListener {
+                    step =
+                        currentStep.copy(description = binding.stepLayout.stepEditText.text.toString())
+                    viewModel.onSaveEditStepClicked(step)
+                    binding.stepLayout.stepEditText.text.clear()
+                }
+
+                binding.stepLayout.deleteStep.setOnClickListener {
+                    viewModel.onDeleteStepClicked(step)
+                    binding.stepLayout.stepEditText.text.clear()
+                }
             }
-
         }
     }
+
+
+
+
+    /*private fun cancelEditStep(binding: NewRecipeFragmentBinding) {
+
+    }
+
+    private fun saveEditStep(binding: NewRecipeFragmentBinding) {
+
+    }
+
+    private fun deleteStep(binding: NewRecipeFragmentBinding) {
+
+    }*/
 }

@@ -7,7 +7,6 @@ import ru.netology.nerecipe.adapter.RecipeInteractionListener
 import ru.netology.nerecipe.data.RecipeRepository
 import ru.netology.nerecipe.data.impl.RecipeRepositoryImpl
 import ru.netology.nerecipe.db.AppDb
-import ru.netology.nerecipe.db.toEntity
 import ru.netology.nerecipe.dto.Recipe
 import ru.netology.nerecipe.dto.Step
 import ru.netology.nerecipe.util.SingleLiveEvent
@@ -32,7 +31,7 @@ class RecipeViewModel(
     val currentStep = MutableLiveData<Step?>(null)
 
     override fun onDeleteClicked(recipe: Recipe) {
-        repository.delete(recipe.id)
+        repository.deleteRecipe(recipe.id)
         deleteRecipe.call()
     }
 
@@ -49,11 +48,17 @@ class RecipeViewModel(
     }
 
     override fun onCancelClicked(step: Step) {
-        TODO("Not yet implemented")
+        currentStep.value = null
     }
 
-    override fun onSaveClicked(recipe: Recipe, steps: List<Step>) {
+    override fun onSaveClicked(newRecipe: Recipe, steps: List<Step>) {
+        val recipe = currentRecipe.value?.copy(
+            title = newRecipe.title,
+            author = newRecipe.author,
+            category = newRecipe.category
+        ) ?: newRecipe
         repository.saveRecipe(recipe)
+        currentRecipe.value = null
         val recipeId = repository.lastId()
         steps.map { step ->
             repository.saveStep(step.copy(recipeId = recipeId))
@@ -64,5 +69,13 @@ class RecipeViewModel(
         currentStep.value = step
     }
 
+    override fun onSaveEditStepClicked(step: Step) {
+        repository.saveStep(step)
+        currentStep.value = null
+    }
+
+    override fun onDeleteStepClicked(step: Step) {
+        repository.deleteStep(step.stepId)
+    }
 
 }
