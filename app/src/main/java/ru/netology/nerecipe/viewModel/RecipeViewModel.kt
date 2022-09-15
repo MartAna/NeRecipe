@@ -47,7 +47,7 @@ class RecipeViewModel(
         repository.like(recipe.id)
     }
 
-    override fun onCancelClicked(step: Step) {
+    override fun onCancelClicked() {
         currentStep.value = null
     }
 
@@ -58,11 +58,11 @@ class RecipeViewModel(
             category = newRecipe.category
         ) ?: newRecipe
         repository.saveRecipe(recipe)
-        currentRecipe.value = null
-        val recipeId = repository.lastId()
-        steps.map { step ->
-            repository.saveStep(step.copy(recipeId = recipeId))
-        }
+        val recipeId = if (currentRecipe.value != null) currentRecipe.value?.id else repository.lastId()
+            steps.map { step ->
+                recipeId?.let { step.copy(recipeId = it) }?.let { repository.saveStep(it) }
+            }
+            currentRecipe.value = null
     }
 
     override fun onStepClicked(step: Step) {
@@ -74,8 +74,8 @@ class RecipeViewModel(
         currentStep.value = null
     }
 
-    override fun onDeleteStepClicked(step: Step) {
-        repository.deleteStep(step.stepId)
+    override fun onDeleteStepClicked(stepId: Long) {
+        repository.deleteStep(stepId)
+        currentStep.value = null
     }
-
 }

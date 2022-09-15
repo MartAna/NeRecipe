@@ -53,9 +53,9 @@ class NewRecipeFragment : Fragment() {
         }
 
         editRecipe(binding, adapter)
-       /* cancelEditStep(binding)
-        saveEditStep(binding)
-        deleteStep(binding)*/
+        /* cancelEditStep(binding)
+         saveEditStep(binding)
+         deleteStep(binding)*/
 
         binding.save.setOnClickListener {
             save(binding)
@@ -79,12 +79,14 @@ class NewRecipeFragment : Fragment() {
 
     private fun save(binding: NewRecipeFragmentBinding) {
         with(binding) {
-            val newRecipe = Recipe(
-                title = editTitle.text.toString(),
-                author = editAuthor.text.toString(),
-                category = spinner.selectedItemPosition
-            )
-            viewModel.onSaveClicked(newRecipe, steps)
+            if (editTitle.text.isNotBlank() && editAuthor.text.isNotBlank() && steps.isNotEmpty()) {
+                val newRecipe = Recipe(
+                    title = editTitle.text.toString(),
+                    author = editAuthor.text.toString(),
+                    category = spinner.selectedItemPosition
+                )
+                viewModel.onSaveClicked(newRecipe, steps)
+            } else return
         }
     }
 
@@ -111,37 +113,23 @@ class NewRecipeFragment : Fragment() {
                     stepLayout.stepEditText.setText(currentStep.description)
                     stepLayout.groupButton.visibility = View.VISIBLE
                 }
+
                 binding.stepLayout.cancel.setOnClickListener {
-                    viewModel.onCancelClicked(step)
+                    viewModel.onCancelClicked()
+                    binding.stepLayout.stepEditText.text.clear()
                 }
 
                 binding.stepLayout.saveStep.setOnClickListener {
-                    step =
-                        currentStep.copy(description = binding.stepLayout.stepEditText.text.toString())
+                    step = currentStep.copy(description = binding.stepLayout.stepEditText.text.toString())
                     viewModel.onSaveEditStepClicked(step)
                     binding.stepLayout.stepEditText.text.clear()
                 }
 
                 binding.stepLayout.deleteStep.setOnClickListener {
-                    viewModel.onDeleteStepClicked(step)
+                    viewModel.onDeleteStepClicked(currentStep.stepId)
                     binding.stepLayout.stepEditText.text.clear()
                 }
             }
         }
     }
-
-
-
-
-    /*private fun cancelEditStep(binding: NewRecipeFragmentBinding) {
-
-    }
-
-    private fun saveEditStep(binding: NewRecipeFragmentBinding) {
-
-    }
-
-    private fun deleteStep(binding: NewRecipeFragmentBinding) {
-
-    }*/
 }

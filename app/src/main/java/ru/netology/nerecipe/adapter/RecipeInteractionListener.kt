@@ -8,10 +8,10 @@ interface RecipeInteractionListener {
     fun onEditClicked(recipe: Recipe)
     fun onRecipeClicked(recipe: Recipe)
     fun onLikeClicked(recipe: Recipe)
-    fun onCancelClicked(step: Step)
+    fun onCancelClicked()
     fun onSaveClicked(newRecipe: Recipe, steps: List<Step>)
     fun onStepClicked(step: Step)
     fun onSaveEditStepClicked(step: Step)
-    fun onDeleteStepClicked(step: Step) {
+    fun onDeleteStepClicked(stepId: Long) {
     }
 }
