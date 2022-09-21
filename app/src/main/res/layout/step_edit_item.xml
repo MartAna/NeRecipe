@@ -36,14 +36,6 @@
         app:layout_constraintStart_toEndOf="@id/imageStep"
         app:layout_constraintTop_toBottomOf="@id/stepTitle" />
 
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/groupButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:checkable="true"
-        android:visibility="visible"
-        app:constraint_referenced_ids="cancel,deleteStep,saveStep" />
-
     <ImageButton
         android:id="@+id/cancel"
         style="@style/Widget.AppTheme.Cancel"
@@ -58,17 +50,17 @@
         android:id="@+id/deleteStep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Delete"
+        android:text="@string/DeleteStep"
         app:layout_constraintEnd_toStartOf="@+id/saveStep"
         app:layout_constraintTop_toBottomOf="@id/stepEditText"
         android:layout_marginEnd="24dp"
-        />
+         />
 
     <Button
         android:id="@+id/saveStep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"
+        android:text="@string/saveStep"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/stepEditText"/>

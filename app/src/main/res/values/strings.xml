@@ -10,7 +10,8 @@
     <string name="author">Author</string>
     <string name="category">Category</string>
     <string name="step">Step</string>
-    <string name="save">Save</string>
-    <string name="saveStep">save</string>
+    <string name="saveRecipe">Save Recipe</string>
+    <string name="saveStep">Save Step</string>
     <string name="cancel">cancel</string>
+    <string name="DeleteStep">Delete Step</string>
 </resources>

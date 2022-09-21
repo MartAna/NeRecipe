@@ -47,20 +47,27 @@ class NewRecipeFragment : Fragment() {
         spinner.setSelection(0)
 
         binding.stepLayout.stepEditText.editableText
-        binding.fabAddStep.setOnClickListener {
-            newStep(adapter, binding)
-            binding.stepLayout.stepEditText.text.clear()
-        }
+        /* binding.fabAddStep.setOnClickListener {
+             newStep(adapter, binding)
+             binding.stepLayout.stepEditText.text.clear()
+         }*/
 
         editRecipe(binding, adapter)
+
+        binding.stepLayout.cancel.setOnClickListener {
+            viewModel.onCancelClicked()
+            binding.stepLayout.stepEditText.text.clear()
+        }
         /* cancelEditStep(binding)
          saveEditStep(binding)
          deleteStep(binding)*/
 
         binding.save.setOnClickListener {
-            save(binding)
+            saveRecipe(binding)
             findNavController().navigateUp()
         }
+
+
 
         return binding.root
     }
@@ -77,7 +84,7 @@ class NewRecipeFragment : Fragment() {
     }
 
 
-    private fun save(binding: NewRecipeFragmentBinding) {
+    private fun saveRecipe(binding: NewRecipeFragmentBinding) {
         with(binding) {
             if (editTitle.text.isNotBlank() && editAuthor.text.isNotBlank() && steps.isNotEmpty()) {
                 val newRecipe = Recipe(
@@ -107,26 +114,23 @@ class NewRecipeFragment : Fragment() {
         }
 
         viewModel.currentStep.observe(viewLifecycleOwner) { currentStep ->
-            val s = currentStep?.description
-            if (s != null) {
+            if (currentStep != null) {
                 with(binding) {
                     stepLayout.stepEditText.setText(currentStep.description)
-                    stepLayout.groupButton.visibility = View.VISIBLE
                 }
-
-                binding.stepLayout.cancel.setOnClickListener {
-                    viewModel.onCancelClicked()
-                    binding.stepLayout.stepEditText.text.clear()
-                }
-
                 binding.stepLayout.saveStep.setOnClickListener {
-                    step = currentStep.copy(description = binding.stepLayout.stepEditText.text.toString())
+                    step =
+                        currentStep.copy(description = binding.stepLayout.stepEditText.text.toString())
                     viewModel.onSaveEditStepClicked(step)
                     binding.stepLayout.stepEditText.text.clear()
                 }
-
                 binding.stepLayout.deleteStep.setOnClickListener {
                     viewModel.onDeleteStepClicked(currentStep.stepId)
+                    binding.stepLayout.stepEditText.text.clear()
+                }
+            } else {
+                binding.stepLayout.saveStep.setOnClickListener {
+                    newStep(adapter, binding)
                     binding.stepLayout.stepEditText.text.clear()
                 }
             }

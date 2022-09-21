@@ -11,7 +11,8 @@
     <string name="author">Автор</string>
     <string name="category">Категория</string>
     <string name="step">Описание шага</string>
-    <string name="save">Сохранить</string>
-    <string name="saveStep">Сохранить шаг</string>
+    <string name="saveStep">Сохранить</string>
     <string name="cancel">Отмена</string>
+    <string name="DeleteStep">Удалить</string>
+    <string name="saveRecipe">Сохранить рецепт</string>
 </resources>
