@@ -4,21 +4,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import ru.netology.nerecipe.R
 import ru.netology.nerecipe.adapter.RecipesAdapter
 import ru.netology.nerecipe.databinding.RecipesFragmentBinding
+import ru.netology.nerecipe.dto.Recipe
 import ru.netology.nerecipe.ui.RecipeFragment.Companion.longArg
 import ru.netology.nerecipe.viewModel.RecipeViewModel
-import kotlin.collections.emptyList as emptyList1
 
 class RecipesFragment : Fragment() {
 
     private val viewModel: RecipeViewModel by viewModels(
         ownerProducer = ::requireParentFragment
     )
+
+    lateinit var recipes: List<Recipe>
+    lateinit var result: List<Recipe>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,7 +34,8 @@ class RecipesFragment : Fragment() {
         binding.recipesRecyclerView.adapter = adapter
 
         viewModel.dataRecipe.observe(viewLifecycleOwner) {
-            adapter.submitList(it)
+            recipes = it
+            adapter.submitList(recipes)
         }
         createNewRecipe(binding)
         openPost()
@@ -48,6 +53,32 @@ class RecipesFragment : Fragment() {
                 }
             }
         }
+
+        binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                result = listOf()
+                recipes.map {
+                    if (it.title.startsWith(query)) {
+                        result = result + it
+                        adapter.submitList(result)
+                    }
+                }
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                result = listOf()
+                recipes.map {
+                    if (newText != null) {
+                        if (it.title.startsWith(newText)) {
+                            result = result + it
+                            adapter.submitList(result)
+                        }
+                    }
+                }
+                return false
+            }
+        })
 
         return binding.root
     }
