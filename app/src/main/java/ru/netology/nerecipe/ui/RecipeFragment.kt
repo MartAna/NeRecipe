@@ -32,7 +32,6 @@ class RecipeFragment : Fragment() {
         val viewHolder = RecipesAdapter.RecipeViewHolder(binding = binding.recipeLayout, viewModel)
         val id = arguments?.longArg
 
-
         viewModel.dataRecipe.value?.map {
             if (it.id == id) {
                 recipe = it
@@ -70,7 +69,6 @@ class RecipeFragment : Fragment() {
                 }
             }
         }
-
         return binding.root
     }
 

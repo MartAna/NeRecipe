@@ -47,10 +47,6 @@ class NewRecipeFragment : Fragment() {
         spinner.setSelection(0)
 
         binding.stepLayout.stepEditText.editableText
-        /* binding.fabAddStep.setOnClickListener {
-             newStep(adapter, binding)
-             binding.stepLayout.stepEditText.text.clear()
-         }*/
 
         editRecipe(binding, adapter)
 
@@ -58,16 +54,11 @@ class NewRecipeFragment : Fragment() {
             viewModel.onCancelClicked()
             binding.stepLayout.stepEditText.text.clear()
         }
-        /* cancelEditStep(binding)
-         saveEditStep(binding)
-         deleteStep(binding)*/
 
         binding.save.setOnClickListener {
             saveRecipe(binding)
             findNavController().navigateUp()
         }
-
-
 
         return binding.root
     }

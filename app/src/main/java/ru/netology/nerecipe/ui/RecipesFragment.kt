@@ -35,6 +35,9 @@ class RecipesFragment : Fragment() {
 
         viewModel.dataRecipe.observe(viewLifecycleOwner) {
             recipes = it
+            if (recipes.isEmpty()) {
+                binding.groupNull.visibility = View.VISIBLE
+            }
             adapter.submitList(recipes)
         }
         createNewRecipe(binding)
@@ -78,8 +81,8 @@ class RecipesFragment : Fragment() {
                 }
                 return false
             }
-        })
-
+        }
+        )
         return binding.root
     }
 
@@ -101,7 +104,4 @@ class RecipesFragment : Fragment() {
             }
         }
     }
-
-
-
 }

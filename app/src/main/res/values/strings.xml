@@ -14,4 +14,6 @@
     <string name="saveStep">Save Step</string>
     <string name="cancel">cancel</string>
     <string name="DeleteStep">Delete Step</string>
+    <string name="textNull" translatable="false">Ваша книга рецептов пока пуста</string>
+    <string name="textLoveNull" translatable="false">Любимых рецептов не выбрано</string>
 </resources>

@@ -29,8 +29,11 @@ class LoveRecipeFragment : Fragment() {
         binding.recipesRecyclerView.adapter = adapter
 
         viewModel.dataRecipe.observe(viewLifecycleOwner) { recipes ->
-            adapter.submitList(recipes.filter { it.likedByMe })
-
+            val loveRecipes = recipes.filter { it.likedByMe }
+            if (loveRecipes.isEmpty()) {
+                binding.groupLoveNull.visibility = View.VISIBLE
+            }
+            adapter.submitList(loveRecipes)
         }
 
         viewModel.currentRecipe.observe(viewLifecycleOwner) { currentRecipe ->
@@ -50,6 +53,7 @@ class LoveRecipeFragment : Fragment() {
         openPost()
         return binding.root
     }
+
     private fun openPost() {
         viewModel.navigateToRecipe.observe(viewLifecycleOwner) {
             if (it != null) {

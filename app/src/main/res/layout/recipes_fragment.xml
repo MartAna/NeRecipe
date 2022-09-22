@@ -14,6 +14,29 @@
         app:layout_constraintStart_toStartOf="parent"
         />
 
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/groupNull"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:constraint_referenced_ids="image,imageText" />
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/recipe_frame" />
+
+    <TextView
+        android:id="@+id/imageText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/textNull"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recipesRecyclerView"
         android:layout_width="match_parent"
