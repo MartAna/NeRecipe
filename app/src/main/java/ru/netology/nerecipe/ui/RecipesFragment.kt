@@ -12,7 +12,8 @@ import ru.netology.nerecipe.R
 import ru.netology.nerecipe.adapter.RecipesAdapter
 import ru.netology.nerecipe.databinding.RecipesFragmentBinding
 import ru.netology.nerecipe.dto.Recipe
-import ru.netology.nerecipe.ui.RecipeFragment.Companion.longArg
+import ru.netology.nerecipe.util.ArrayArg
+import ru.netology.nerecipe.util.LongArg
 import ru.netology.nerecipe.viewModel.RecipeViewModel
 
 class RecipesFragment : Fragment() {
@@ -33,11 +34,13 @@ class RecipesFragment : Fragment() {
         val adapter = RecipesAdapter(viewModel)
         binding.recipesRecyclerView.adapter = adapter
 
+        val selectedCategory = arguments?.arrayArg
+
         viewModel.dataRecipe.observe(viewLifecycleOwner) {
             recipes = it
             if (recipes.isEmpty()) {
                 binding.groupNull.visibility = View.VISIBLE
-            }
+            } else binding.groupNull.visibility = View.GONE
             adapter.submitList(recipes)
         }
         createNewRecipe(binding)
@@ -83,8 +86,23 @@ class RecipesFragment : Fragment() {
             }
         }
         )
+
+        binding.filter.setOnClickListener {
+            findNavController().navigate(R.id.action_recipesFragment_to_filterDialogFragment)
+            var selectedRecipe = listOf<Recipe>()
+            selectedCategory?.map {
+                recipes.map { recipe ->
+                    if (recipe.category == it) {
+                        selectedRecipe = selectedRecipe + recipe
+                    }
+                }
+            }
+            adapter.submitList(selectedRecipe)
+        }
+
         return binding.root
     }
+
 
     private fun createNewRecipe(binding: RecipesFragmentBinding) {
         binding.fab.setOnClickListener {
@@ -103,5 +121,10 @@ class RecipesFragment : Fragment() {
                 )
             }
         }
+    }
+
+    companion object {
+        var Bundle.longArg: Long? by LongArg
+        var Bundle.arrayArg: ArrayList<Int>? by ArrayArg
     }
 }

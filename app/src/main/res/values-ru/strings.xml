@@ -15,4 +15,5 @@
     <string name="cancel">Отмена</string>
     <string name="DeleteStep">Удалить</string>
     <string name="saveRecipe">Сохранить рецепт</string>
+    <string name="choosing">Выбор категории</string>
 </resources>

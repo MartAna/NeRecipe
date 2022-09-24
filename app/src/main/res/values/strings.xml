@@ -16,4 +16,6 @@
     <string name="DeleteStep">Delete Step</string>
     <string name="textNull" translatable="false">Ваша книга рецептов пока пуста</string>
     <string name="textLoveNull" translatable="false">Любимых рецептов не выбрано</string>
+    <string name="choosing">Choosing a category</string>
+    <string name="ok" translatable="false">OK</string>
 </resources>

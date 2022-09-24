@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_recipesFragment_to_loveRecipeFragment"
             app:destination="@id/loveRecipeFragment" />
+        <action
+            android:id="@+id/action_recipesFragment_to_filterDialogFragment"
+            app:destination="@id/filterDialogFragment" />
 
     </fragment>
     <fragment
@@ -47,4 +50,8 @@
             android:id="@+id/action_loveRecipeFragment_to_newRecipeFragment"
             app:destination="@id/newRecipeFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/filterDialogFragment"
+        android:name="ru.netology.nerecipe.ui.FilterDialogFragment"
+        android:label="FilterDialogFragment" />
 </navigation>
